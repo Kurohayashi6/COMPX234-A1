@@ -93,3 +93,17 @@ class Assignment1:
             doc = printDoc(f"My name is machine {id}", id)
             # Insert it in the print queue
             self.outer.print_list.queueInsert(doc)
+
+        def isRequestSafe(self, id):
+            print(f"Machine {id} Checking availability")
+            # Acquire counting semaphore (wait for an available printer)
+
+            # Acquire binary semaphore for mutual exclusion of the print queue
+
+            # Both semaphores acquired
+            print(f"Machine {id} will proceed")
+
+        def postRequest(self, id):
+            print(f"Machine {id} Releasing binary semaphore")
+            # Release the binary semaphore
+            self.outer.binary.release()
