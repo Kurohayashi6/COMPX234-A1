@@ -44,6 +44,8 @@ class Assignment1:
         for t in self.pThreads:
             t.join()
 
+        print("Simulation finished.")
+
     # Printer class
     class printerThread(threading.Thread):
         def __init__(self, printerID, outer):
