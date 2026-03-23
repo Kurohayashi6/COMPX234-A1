@@ -24,6 +24,9 @@ class Assignment1:
         # Create Machine and Printer threads
         for i in range(self.NUM_MACHINES):
             self.mThreads.append(self.machineThread(i, self))
+
+        for i in range(self.NUM_PRINTERS):
+            self.pThreads.append(self.printerThread(i, self))
             
         # Start all the threads
         # Write code here
