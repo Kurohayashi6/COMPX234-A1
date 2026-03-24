@@ -68,9 +68,13 @@ class Assignment1:
 
         def printDox(self, printerID):
             self.outer.binary.acquire()
+            has_doc = self.outer.print_list.head is not None
             print(f"Printer ID: {printerID} : now available")
             # Print from the queue
             self.outer.print_list.queuePrint(printerID)
+            self.outer.binary.release()
+            if has_doc:
+                self.outer.semaphore.release()
 
     # Machine class
     class machineThread(threading.Thread):
