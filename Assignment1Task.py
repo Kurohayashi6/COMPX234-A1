@@ -88,7 +88,9 @@ class Assignment1:
                 # Machine sleeps for a random amount of time
                 self.machineSleep()
                 # Machine wakes up and sends a print request
+                self.isRequestSafe(self.machineID)
                 self.printRequest(self.machineID)
+                self.postRequest(self.machineID)
 
         def machineSleep(self):
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
@@ -104,9 +106,9 @@ class Assignment1:
         def isRequestSafe(self, id):
             print(f"Machine {id} Checking availability")
             # Acquire counting semaphore (wait for an available printer)
-
+            self.outer.binary.acquire()
             # Acquire binary semaphore for mutual exclusion of the print queue
-
+            self.outer.semaphore.acquire()
             # Both semaphores acquired
             print(f"Machine {id} will proceed")
 
